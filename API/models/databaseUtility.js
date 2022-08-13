@@ -1,21 +1,7 @@
-const mysql = require('mysql2');
-const crypto = require('crypto');
-const sha256 = crypto.createHash('sha256');
+const mongoose = require('mongoose');
+require("dotenv").config();
 
-function connector() {
-  return mysql.createConnection({
-    user: "hitansh",
-    password: "test",
-    host: "localhost",
-    database: "test"  
-  });
-}
+mongoose.connect(`${process.env.DB_URL}`);
 
-function hash(pwd){
-  var res = "";
-  sha256.update(pwd, "utf8");
-  res = sha256.digest("base64");
-  return res;
-}
 
-module.exports = { connector, hash};
+module.exports = { connector:mongoose };
