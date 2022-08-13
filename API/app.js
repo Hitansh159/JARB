@@ -6,23 +6,28 @@ var logger = require('morgan');
 var createError = require('http-errors');
 
 var indexRouter = require('./routes/index');
+var authRouter = require('./routes/auth');
 var usersRouter = require('./routes/users');
 
 var app = express();
 
-// view Engine setup
-app.set('views', path.join(__dirname, 'views'))
-app.set('view engine', 'ejs');
-
+// log setup
 var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
 app.use(logger('common', {stream: accessLogStream}));
+
+// req body 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+// cokkie parser
 app.use(cookieParser());
+
+// serving static files 
 app.use(express.static(path.join(__dirname, 'public')));
 
-
+// routes to files
 app.use('/', indexRouter);
+app.use('/auth', authRouter);
 app.use('/users', usersRouter);
 
 app.use(function(req, res, next){
@@ -32,9 +37,8 @@ app.use(function(req, res, next){
 app.use(function (err, req, res, next){
 	res.locals.message = err.message;
 	res.locals.error = req.app.get('env') === 'development' ? err : {};
-	
-	res.status(err.status || 500);
-	res.render('error');
+
+	res.status(err.status || 500).json({err: err, msg: err.msg});
 });
 
 
