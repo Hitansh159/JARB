@@ -32,9 +32,38 @@ const TextArea = () => {
   )
 };
 
+function Section({title, textFieldProps}){
+  return (
+    <Box>
+    <Divider variant="inset" />
+    <Box>
+      <h3>{title}</h3>
+
+      <Box>
+        {textFieldProps.map((element) => {
+          return (
+          <TextField id={element.id} label={element.label} key={element.id} variant="standard" />
+          );
+        }
+        )}
+      </Box>
+      <TextArea />
+    </Box>
+    </Box>
+  );
+}
+
 // TODO: Devied in component 
 // TODO: Style elements better
 function HomePage() {
+
+  var expirences = [
+    {id:"companyName1", label:"company Name"},
+    {id:"companyLocation1", label:"company Location"},
+    {id:"companyRole1", label:"company Role"},
+    {id:"companyDuration1", label:"company Duration"}
+  ]
+
   return (
     <div style={{margin: "2% 10%"}}>
       <h1> My Resume </h1>
@@ -45,18 +74,7 @@ function HomePage() {
         <SocialLink Icon={Mail} label="Email ID" id="emailId" />
       </Box>
 
-      <Divider variant="inset" />
-      <Box>
-        <h3>Experience</h3>
-
-        <Box>
-          <TextField id="companyName1" label="Company Name" variant="standard" />
-          <TextField id="companyLocation1" label="Company Location" variant="standard" />
-          <TextField id="companyRole1" label="Role" variant="standard" />
-          <TextField id="RoleDuration1" label="Start Date-End Date" variant="standard" />
-        </Box>
-        <TextArea />
-      </Box>
+      <Section title="Expirence" textFieldProps={expirences}/>
 
       <Divider variant="inset" />
       <Box>
