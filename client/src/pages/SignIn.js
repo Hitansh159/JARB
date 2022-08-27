@@ -48,7 +48,7 @@ export default function SignInSide() {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: 'url(https://source.unsplash.com/random)',
+            backgroundImage: 'url(https://media.istockphoto.com/photos/glad-to-work-with-you-picture-id951514270?k=20&m=951514270&s=170667a&w=0&h=JBmhQwsfuZJNbfxhKsjGPAWAHXX4efZvYQhC0vZ5bCk=)',
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],

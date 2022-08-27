@@ -8,6 +8,7 @@ import React from 'react';
 import { Editor, EditorState } from 'draft-js';
 import 'draft-js/dist/Draft.css';
 import { useState } from 'react';
+import ResumeInput from '../Components/ResumeInput';
 
 function SocialLink({ Icon, label, id }) {
   return (
@@ -58,13 +59,15 @@ function Section({title, textFieldProps}){
 function HomePage() {
 
   var expirences = [
-    {id:"companyName1", label:"company Name"},
-    {id:"companyLocation1", label:"company Location"},
-    {id:"companyRole1", label:"company Role"},
-    {id:"companyDuration1", label:"company Duration"}
+    {id:"companyName1", label:"Company Name"},
+    {id:"companyLocation1", label:"Company Location"},
+    {id:"companyRole1", label:"Company Role"},
+    {id:"companyDuration1", label:"Company Duration"}
   ]
 
   return (
+    <>
+      
     <div style={{margin: "2% 10%"}}>
       <h1> My Resume </h1>
       <TextField id="fullName" label="Full Name" variant="outlined" />
@@ -74,8 +77,8 @@ function HomePage() {
         <SocialLink Icon={Mail} label="Email ID" id="emailId" />
       </Box>
 
-      <Section title="Expirence" textFieldProps={expirences}/>
-
+      <ResumeInput title="Expirence" textFieldProps={expirences}/>
+      <TextArea />
       <Divider variant="inset" />
       <Box>
         <h3>Project</h3>
@@ -101,6 +104,7 @@ function HomePage() {
         <TextArea />
       </Box>
     </div>
+    </>
   )
 }
 
