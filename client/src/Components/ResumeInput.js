@@ -5,12 +5,9 @@ import TextField from '@mui/material/TextField';
 
 import 'draft-js/dist/Draft.css';
 
-function ResumeInput({title, textFieldProps}) {
+function ResumeInput({ textFieldProps}) {
     return (
-        <Box>
-        <Divider variant="inset" />
-        <Box>
-          <h3>{title}</h3>
+        
     
           <Box>
             {textFieldProps.map((element) => {
@@ -23,8 +20,7 @@ function ResumeInput({title, textFieldProps}) {
             )}
           </Box>
           
-        </Box>
-        </Box>
+       
       );
 }
 
