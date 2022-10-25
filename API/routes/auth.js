@@ -7,8 +7,9 @@ function generateAccessToken(username) {
   return jwt.sign(username, process.env.TOKEN_SECRET);
 }
 
-router.post('/', function(req, res, next) {
-  if(validateUser(req.body.id, req.body.password)){
+router.post('/', async function(req, res, next) {
+  let userAuth = await validateUser(req.body.id, req.body.password);
+  if(userAuth){
     const token = generateAccessToken(req.body.id);
     res.json({token: token, err: null});
   }

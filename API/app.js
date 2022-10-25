@@ -4,12 +4,20 @@ var cookieParser = require('cookie-parser');
 var fs = require('fs');
 var logger = require('morgan');
 var createError = require('http-errors');
+const cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var authRouter = require('./routes/auth');
 var usersRouter = require('./routes/users');
 
 var app = express();
+
+const corsOptions = {
+    origin: '*',
+    methods: ['POST', 'GET', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}
+app.use(cors(corsOptions));
 
 // log setup
 var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })

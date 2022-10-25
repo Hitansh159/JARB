@@ -12,6 +12,7 @@ import Grid from '@mui/material/Grid';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {signUpRequest} from '../utils/auth'
 
 function Copyright(props) {
   return (
@@ -32,10 +33,8 @@ export default function SignInSide() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+
+    signUpRequest(data.get("name"), data.get("email"), data.get("password"));
   };
 
   return (

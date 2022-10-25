@@ -12,6 +12,8 @@ import Grid from '@mui/material/Grid';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { signInRequest } from '../utils/auth';
+import Cookies from 'universal-cookie';
 
 function Copyright(props) {
   return (
@@ -32,9 +34,16 @@ export default function SignInSide() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+    let token;
+    signInRequest(data.get('email'), data.get('password'))
+    .then((token)=>{
+      if(token){
+        let cookies = new Cookies();
+        cookies.set('token', token); 
+      }
+      else{
+        alert("Incorrect Id password");
+      }
     });
   };
 
