@@ -4,7 +4,6 @@ import TextArea from "./TextArea";
 import AddButton from "./AddButton";
 import DeleteIcon from '@mui/icons-material/Delete';
 import SelectCardIcon from "./SelectCardIcon";
-import { Editor, EditorState, convertToRaw, ContentState } from 'draft-js';
 
 const cardCss = {
   borderRadius: "5px",
@@ -21,6 +20,14 @@ function Card({ title, cardData, setCardData, addCard, removeCard }) {
   const [cardStyle, setCardStyle] = useState({...cardCss, backgroundColor:cardData.selected?"#00ff005c":"inherit"});
   const [addButtonStyle, setAddButtonStyle] = useState(buttonCss);
 
+  useEffect(()=>{
+    if(cardData.selected){
+      changeStyle(cardStyle, {backgroundColor:"#00ff005c"}, setCardStyle)
+    }
+    else{
+      changeStyle(cardStyle, { backgroundColor: "inherit" }, setCardStyle)
+    }
+  }, [cardData.selected])
 
   const changeStyle = (oldStyle, change, styleSetter) => {
     let newStyle = { ...oldStyle, ...change };
@@ -40,12 +47,12 @@ function Card({ title, cardData, setCardData, addCard, removeCard }) {
     let newCardData = { ...cardData };
     newCardData.selected = !newCardData.selected;
     setCardData(newCardData);
-    if(newCardData.selected){
-      changeStyle(cardStyle, {backgroundColor:"#00ff005c"}, setCardStyle)
-    }
-    else{
-      changeStyle(cardStyle, { backgroundColor: "inherit" }, setCardStyle)
-    }
+    // if(newCardData.selected){
+    //   changeStyle(cardStyle, {backgroundColor:"#00ff005c"}, setCardStyle)
+    // }
+    // else{
+    //   changeStyle(cardStyle, { backgroundColor: "inherit" }, setCardStyle)
+    // }
   }
 
   return (

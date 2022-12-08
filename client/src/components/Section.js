@@ -38,7 +38,6 @@ function Section({ title, index, sections, setSections }) {
             newSection.cards.push(card);
         })
         newSections.splice(index, 1, newSection);
-        console.log(newSections);
         setSections(newSections);
     }
     const updateSection = (index, data) => {
