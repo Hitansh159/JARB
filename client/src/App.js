@@ -13,7 +13,7 @@ import GenratedPage from './pages/Genrated';
 
 function App() {
   return (
-    <Router>
+    <Router basename='JARB'>
       <Routes>
         <Route path="/generated" element={<GenratedPage/>}/>
         <Route path="/" element={<HomePage/>}/>
